@@ -1,0 +1,25 @@
+{
+  "name": "amiibos-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc --version && tsc",
+    "start": "node dist/index.js",
+    "start:dev": "cross-env NODE_ENV=development ts-node --type-check src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build": "npm run build && docker build -f ./docker/Dockerfile .",
+    "docker:start": "docker-compose -f ./docker/docker-compose.yml up",
+    "docker:test": "docker-compose -f ./docker/docker-compose.test.yml run app"
+  },
+  "author": "dkellycollins",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.0",
+    "tslint-language-service": "^0.9.9",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {}
+}

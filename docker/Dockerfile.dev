@@ -1,0 +1,15 @@
+FROM node:latest
+
+ARG port=3000
+EXPOSE $port
+ENV PORT $port
+
+WORKDIR /app
+
+COPY ["package.json", "package-lock.json", "./"]
+RUN npm install
+
+COPY ./test ./test
+COPY ./src ./src
+
+CMD ["npm", "run", "start:dev"]

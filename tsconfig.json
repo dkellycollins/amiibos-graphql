@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "listFiles": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "plugins": [
+      {
+         "name": "tslint-language-service"
+      }
+    ],
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "ES6",
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
