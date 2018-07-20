@@ -15,11 +15,17 @@
   "author": "dkellycollins",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/graphql": "^0.13.3",
     "cross-env": "^5.2.0",
     "rimraf": "^2.6.2",
     "ts-node": "^7.0.0",
     "tslint-language-service": "^0.9.9",
     "typescript": "^2.9.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "apollo-server-express": "^2.0.0",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2"
+  }
 }
