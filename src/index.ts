@@ -7,14 +7,14 @@ const data = [
 
 const typeDefs   = gql`
 type Amiibo {
-  name: String!
+  name: ID!
   display: String!
   releaseDate: String
   series: AmiiboSeries
 }
 
 type AmiiboSeries {
-  name: String!
+  name: ID!
   display: String!
 }
 
@@ -24,15 +24,42 @@ type Query {
   amiibo(name: String!): Amiibo
 }
 
-schema {
-  query: Query
+input AmiiboInput {
+  name: String!
+  display: String!
+  releaseDate: String
+  series: AmiiboSeriesInput
+}
+
+input AmiiboSeriesInput {
+  name: String!
+  display: String!
+}
+
+type Mutation {
+  saveAmiibos(amiibos: [AmiiboInput]): Boolean
 }`;
 
 const resolvers = {
   Query: {
     message: () => 'Hello World!',
     amiibos: () => data,
-    amiibo: (obj: any, args: any) => data.filter(i => i.name === args.name)
+    amiibo: (obj: any, { name }: any) => data.find(i => i.name === name)
+  },
+  
+  Mutation: {
+    saveAmiibos: (obj: any, { amiibos }: any) => {
+      amiibos.forEach((amiibo: any) => {
+        const existingAmiibo = data.find(i => i.name === amiibo.name);
+        if (existingAmiibo) {
+          Object.assign(existingAmiibo, amiibo);
+        }
+        else {
+          data.push(amiibo);
+        }
+      });
+      return true;
+    }
   }
 };
 
